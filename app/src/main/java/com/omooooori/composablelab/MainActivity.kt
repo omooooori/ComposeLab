@@ -6,10 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.omooooori.composablelab.ui.NavigationRoutes
+import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
+import com.omooooori.composablelab.ui.composable.MainScreen
 import com.omooooori.composablelab.ui.theme.ComposableLabTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,25 +24,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = NavigationRoutes.MAIN_SCREEN
+                    ) {
+                        composable(NavigationRoutes.MAIN_SCREEN) {
+                            MainScreen(navController)
+                        }
+                        composable(NavigationRoutes.LEARNING_ENGLISH_UI) {
+                            LearningEnglishUI3()
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ComposableLabTheme {
-        Greeting("Android")
     }
 }
