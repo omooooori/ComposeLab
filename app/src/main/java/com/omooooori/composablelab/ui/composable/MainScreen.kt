@@ -31,7 +31,8 @@ fun MainScreen(
     }
 
     val screenList = hashMapOf(
-        "Learning English UI" to NavigationRoutes.LEARNING_ENGLISH_UI
+        "Learning English UI" to NavigationRoutes.LEARNING_ENGLISH_UI,
+        "TCA like Architecture" to NavigationRoutes.TCA_LIKE_ARCHITECTURE
     )
 
     LazyColumn(

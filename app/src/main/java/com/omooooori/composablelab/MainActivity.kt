@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import com.omooooori.composablelab.ui.NavigationRoutes
 import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
+import com.omooooori.composablelab.ui.composable.tca.TcaLikeScreen
 import com.omooooori.composablelab.ui.theme.ComposableLabTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,6 +35,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(NavigationRoutes.LEARNING_ENGLISH_UI) {
                             LearningEnglishUI3()
+                        }
+                        composable(NavigationRoutes.TCA_LIKE_ARCHITECTURE) {
+                            TcaLikeScreen()
                         }
                     }
                 }
