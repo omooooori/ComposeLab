@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.constraintlayout)
     implementation(libs.appcompat)
+    implementation(libs.timber)
 
     // Image Loader
     implementation(libs.glide)
