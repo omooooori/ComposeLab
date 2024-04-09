@@ -30,9 +30,10 @@ fun MainScreen(
         navController.navigate(route)
     }
 
-    val screenList = hashMapOf(
+    val screenList = linkedMapOf(
         "Learning English UI" to NavigationRoutes.LEARNING_ENGLISH_UI,
-        "TCA like Architecture" to NavigationRoutes.TCA_LIKE_ARCHITECTURE
+        "TCA like Architecture" to NavigationRoutes.TCA_LIKE_ARCHITECTURE,
+        "Image Loader Fragment" to NavigationRoutes.IMAGE_LOADER_FRAGMENT
     )
 
     LazyColumn(

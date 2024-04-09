@@ -1,15 +1,25 @@
 package com.omooooori.composablelab
 
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.fragment.app.commit
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.omooooori.composablelab.ui.ImageLoaderFragment
 import com.omooooori.composablelab.ui.NavigationRoutes
 import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
@@ -21,6 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposableLabTheme {
+                val context = LocalContext.current
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -39,9 +50,34 @@ class MainActivity : ComponentActivity() {
                         composable(NavigationRoutes.TCA_LIKE_ARCHITECTURE) {
                             TcaLikeScreen()
                         }
+                        composable(NavigationRoutes.IMAGE_LOADER_FRAGMENT) {
+                            FragmentContainer()
+                        }
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+fun FragmentContainer() {
+    val context = LocalContext.current
+
+    AndroidView(
+        modifier = Modifier.fillMaxSize(),
+        factory = { ctx ->
+            FrameLayout(ctx).apply {
+                id = View.generateViewId()
+            }
+        },
+        update = { frameLayout ->
+            if (context is FragmentActivity) {
+                context.supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace(frameLayout.id, ImageLoaderFragment.newInstance())
+                }
+            }
+        }
+    )
 }
