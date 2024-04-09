@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.appcompat)
     implementation(libs.timber)
+    implementation(libs.coroutines)
 
     // Image Loader
     implementation(libs.glide)
