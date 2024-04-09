@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -62,6 +63,13 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.fragment)
     implementation(libs.fragment.ktx)
+
+    // Image Loader
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
+    implementation(libs.fresco)
+    implementation(libs.picasso)
+    implementation(libs.coil)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
