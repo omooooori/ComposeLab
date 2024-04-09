@@ -18,6 +18,9 @@ fresco = "2.6.0"
 picasso = "2.71828"
 coil = "2.4.0"
 
+# DI
+hilt = "2.51"
+
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -44,6 +47,10 @@ glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", versi
 fresco = { group = "com.facebook.fresco", name = "fresco", version.ref = "fresco" }
 picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+
+# DI
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -25,7 +25,9 @@ import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
 import com.omooooori.composablelab.ui.composable.tca.TcaLikeScreen
 import com.omooooori.composablelab.ui.theme.ComposableLabTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

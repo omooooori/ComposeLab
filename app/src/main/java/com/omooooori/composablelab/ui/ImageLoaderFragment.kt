@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.omooooori.composablelab.R
 import com.omooooori.composablelab.databinding.FragmentImageLoaderBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ImageLoaderFragment : Fragment() {
 
     private var _binding: FragmentImageLoaderBinding? = null
