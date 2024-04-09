@@ -3,8 +3,8 @@ package com.omooooori.composablelab
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -12,8 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.app.commit
 import androidx.fragment.app.FragmentActivity
@@ -28,7 +26,7 @@ import com.omooooori.composablelab.ui.theme.ComposableLabTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
