@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.fragment)
     implementation(libs.fragment.ktx)
+    implementation(libs.constraintlayout)
 
     // Image Loader
     implementation(libs.glide)
