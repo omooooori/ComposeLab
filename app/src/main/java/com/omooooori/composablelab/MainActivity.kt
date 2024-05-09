@@ -13,11 +13,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.omooooori.composablelab.ui.ImageLoaderFragment
+import com.omooooori.composablelab.ui.ImageLoaderFragmentJava
 import com.omooooori.composablelab.ui.NavigationRoutes
 import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
@@ -51,7 +53,10 @@ class MainActivity : AppCompatActivity() {
                             TcaLikeScreen()
                         }
                         composable(NavigationRoutes.IMAGE_LOADER_FRAGMENT) {
-                            FragmentContainer()
+                            FragmentContainer(ImageLoaderFragment.newInstance())
+                        }
+                        composable(NavigationRoutes.IMAGE_LOADER_FRAGMENT_JAVA) {
+                            FragmentContainer(ImageLoaderFragmentJava.newInstance())
                         }
                     }
                 }
@@ -61,8 +66,11 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun FragmentContainer() {
+fun FragmentContainer(
+    fragment: Fragment
+) {
     val context = LocalContext.current
+    val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
 
     AndroidView(
         modifier = Modifier.fillMaxSize(),
@@ -72,10 +80,11 @@ fun FragmentContainer() {
             }
         },
         update = { frameLayout ->
-            if (context is FragmentActivity) {
-                context.supportFragmentManager.commit {
+            val isFragmentAdded = fragmentManager?.findFragmentById(frameLayout.id) != null
+            if (!isFragmentAdded) {
+                fragmentManager?.commit {
                     setReorderingAllowed(true)
-                    replace(frameLayout.id, ImageLoaderFragment.newInstance())
+                    replace(frameLayout.id, fragment)
                 }
             }
         }

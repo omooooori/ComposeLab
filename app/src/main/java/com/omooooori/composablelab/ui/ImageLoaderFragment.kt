@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import coil.ImageLoader
+import coil.annotation.ExperimentalCoilApi
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -23,7 +25,13 @@ import com.omooooori.composablelab.ui.viewmodel.ImageLoaderViewModel
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Cache
+import okhttp3.OkHttpClient
 import timber.log.Timber
+import java.io.File
 import javax.inject.Inject
 
 
@@ -50,6 +58,8 @@ class ImageLoaderFragment : Fragment() {
         loadFrescoImage()
         loadCoilImage()
         loadPicassoImage()
+
+        binding.clearCacheButton.setOnClickListener { clearCache() }
     }
 
     private fun loadGlideImage() {
@@ -93,6 +103,17 @@ class ImageLoaderFragment : Fragment() {
     }
 
     private fun loadCoilImage() {
+        val cacheSize = 10 * 1024 * 1024 // 10 MB
+        val cacheDirectory = File(requireContext().cacheDir, "http_cache")
+        val cache = Cache(cacheDirectory, cacheSize.toLong())
+        val okHttpClient = OkHttpClient.Builder()
+            .cache(cache)
+            .build()
+
+        val imageLoader = ImageLoader.Builder(requireContext())
+            .okHttpClient(okHttpClient)
+            .build()
+
         val startTime = System.currentTimeMillis()
         val request = ImageRequest.Builder(requireContext())
             .data(viewModel.imageUrl)
@@ -107,8 +128,13 @@ class ImageLoaderFragment : Fragment() {
                     Timber.e("Failed to load image using coil.")
                 }
             )
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .networkCachePolicy(CachePolicy.ENABLED)
+            .crossfade(false)
             .build()
-        ImageLoader(requireContext()).enqueue(request)
+
+        imageLoader.enqueue(request)
     }
 
     private fun loadPicassoImage() {
@@ -126,6 +152,23 @@ class ImageLoaderFragment : Fragment() {
                     Timber.e("Failed to load image using picasso. e: ${e.toString()}")
                 }
             })
+    }
+
+    @OptIn(ExperimentalCoilApi::class)
+    private fun clearCache() {
+        val context = requireContext()
+        CoroutineScope(Dispatchers.IO).launch {
+            Glide.get(context).clearDiskCache()
+        }
+
+        val imagePipeline = Fresco.getImagePipeline()
+        imagePipeline.clearCaches()
+
+        val imageLoader = ImageLoader(context)
+        imageLoader.memoryCache?.clear()
+        imageLoader.diskCache?.clear()
+
+        // picassoはキャッシュ削除をサポートしていない。
     }
 
     companion object {

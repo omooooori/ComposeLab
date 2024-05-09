@@ -5,4 +5,5 @@ object NavigationRoutes {
     const val LEARNING_ENGLISH_UI = "learningEnglishUI"
     const val TCA_LIKE_ARCHITECTURE = "tcaLikeArchitecture"
     const val IMAGE_LOADER_FRAGMENT = "imageLoaderFragment"
+    const val IMAGE_LOADER_FRAGMENT_JAVA = "imageLoaderFragmentJava"
 }
