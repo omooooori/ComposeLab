@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+
 @Composable
 fun ExpandView() {
     var expanded by remember { mutableStateOf(false) }
@@ -37,7 +38,7 @@ fun ExpandView() {
                 shape = RoundedCornerShape(12.dp)
             )
             .animateContentSize()
-            .width(if (expanded) 12.dp else 178.dp)
+            .width(if (expanded) 178.dp else 12.dp)
             .height(155.dp)
             .fillMaxWidth()
             .clickable(

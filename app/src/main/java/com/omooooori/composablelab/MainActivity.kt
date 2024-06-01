@@ -23,6 +23,7 @@ import com.omooooori.composablelab.ui.ImageLoaderFragmentJava
 import com.omooooori.composablelab.ui.NavigationRoutes
 import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
+import com.omooooori.composablelab.ui.composable.flipcard.FlipCardScreen
 import com.omooooori.composablelab.ui.composable.tca.TcaLikeScreen
 import com.omooooori.composablelab.ui.theme.ComposableLabTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposableLabTheme {
-                val context = LocalContext.current
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
                         }
                         composable(NavigationRoutes.IMAGE_LOADER_FRAGMENT_JAVA) {
                             FragmentContainer(ImageLoaderFragmentJava.newInstance())
+                        }
+                        composable(NavigationRoutes.FLIP_CARD_VIEW) {
+                            FlipCardScreen()
                         }
                     }
                 }

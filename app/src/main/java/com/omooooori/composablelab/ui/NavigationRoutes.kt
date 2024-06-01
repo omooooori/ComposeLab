@@ -6,4 +6,5 @@ object NavigationRoutes {
     const val TCA_LIKE_ARCHITECTURE = "tcaLikeArchitecture"
     const val IMAGE_LOADER_FRAGMENT = "imageLoaderFragment"
     const val IMAGE_LOADER_FRAGMENT_JAVA = "imageLoaderFragmentJava"
+    const val FLIP_CARD_VIEW = "flipCardView"
 }
