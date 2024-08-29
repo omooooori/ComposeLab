@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import com.omooooori.composablelab.ui.ImageLoaderFragment
 import com.omooooori.composablelab.ui.ImageLoaderFragmentJava
 import com.omooooori.composablelab.ui.NavigationRoutes
+import com.omooooori.composablelab.ui.bottomsheetscaffold.BottomSheetScaffoldScreen
 import com.omooooori.composablelab.ui.composable.LearningEnglishUI3
 import com.omooooori.composablelab.ui.composable.MainScreen
 import com.omooooori.composablelab.ui.composable.flipcard.FlipCardScreen
@@ -60,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                         }
                         composable(NavigationRoutes.FLIP_CARD_VIEW) {
                             FlipCardScreen()
+                        }
+                        composable(NavigationRoutes.BOTTOM_SHEET_SCAFFOLD) {
+                            BottomSheetScaffoldScreen()
                         }
                     }
                 }

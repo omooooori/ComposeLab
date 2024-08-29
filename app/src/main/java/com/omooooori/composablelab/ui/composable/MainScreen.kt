@@ -35,7 +35,8 @@ fun MainScreen(
         "TCA like Architecture" to NavigationRoutes.TCA_LIKE_ARCHITECTURE,
         "Image Loader Fragment" to NavigationRoutes.IMAGE_LOADER_FRAGMENT,
         "Image Loader Fragment Java" to NavigationRoutes.IMAGE_LOADER_FRAGMENT_JAVA,
-        "Flip Card View" to NavigationRoutes.FLIP_CARD_VIEW
+        "Flip Card View" to NavigationRoutes.FLIP_CARD_VIEW,
+        "BottomSheet Scaffold Screen" to NavigationRoutes.BOTTOM_SHEET_SCAFFOLD
     )
 
     LazyColumn(

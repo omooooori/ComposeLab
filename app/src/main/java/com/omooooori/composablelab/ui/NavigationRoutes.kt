@@ -7,4 +7,5 @@ object NavigationRoutes {
     const val IMAGE_LOADER_FRAGMENT = "imageLoaderFragment"
     const val IMAGE_LOADER_FRAGMENT_JAVA = "imageLoaderFragmentJava"
     const val FLIP_CARD_VIEW = "flipCardView"
+    const val BOTTOM_SHEET_SCAFFOLD = "bottomSheetScaffold"
 }
